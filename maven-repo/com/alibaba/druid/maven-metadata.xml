@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.alibaba</groupId>
+  <artifactId>druid</artifactId>
+  <versioning>
+    <release>1.1.10-oracle</release>
+    <versions>
+      <version>1.1.10-oracle</version>
+    </versions>
+    <lastUpdated>20210609094256</lastUpdated>
+  </versioning>
+</metadata>
