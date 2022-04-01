@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.linceln</groupId>
 	<artifactId>druid</artifactId>
-	<version>1.1.10</version>
+	<version>1.1.11</version>
 
 	<packaging>jar</packaging>
 	<name>linceln</name>
