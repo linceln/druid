@@ -73,6 +73,10 @@ public class SQLParserUtils {
             return new OracleStatementParser(sql);
         }
 
+        if (JdbcUtils.DM.equals(dbType)) {
+            return new MySqlStatementParser(sql, features);
+        }
+
         if (JdbcUtils.MYSQL.equals(dbType) || JdbcUtils.ALIYUN_DRDS.equals(dbType)) {
             return new MySqlStatementParser(sql, features);
         }
