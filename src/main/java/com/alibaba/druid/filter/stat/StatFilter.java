@@ -54,6 +54,7 @@ import com.alibaba.druid.support.json.JSONWriter;
 import com.alibaba.druid.support.logging.Log;
 import com.alibaba.druid.support.logging.LogFactory;
 import com.alibaba.druid.support.profile.Profiler;
+import com.alibaba.druid.util.JdbcUtils;
 
 /**
  * @author wenshao [szujobs@hotmail.com]
@@ -94,11 +95,19 @@ public class StatFilter extends FilterEventAdapter implements StatFilterMBean {
     }
 
     public String getDbType() {
+        /**新增内容*/
+        if(JdbcUtils.DM.equals(this.dbType)){
+            this.dbType=JdbcUtils.ORACLE;
+        }
         return dbType;
     }
 
     public void setDbType(String dbType) {
         this.dbType = dbType;
+        /**新增内容*/
+        if(JdbcUtils.DM.equals(this.dbType)){
+            this.dbType=JdbcUtils.ORACLE;
+        }
     }
 
     public long getSlowSqlMillis() {
@@ -139,6 +148,10 @@ public class StatFilter extends FilterEventAdapter implements StatFilterMBean {
     }
 
     public String mergeSql(String sql, String dbType) {
+        /**新增内容*/
+        if(JdbcUtils.DM.equals(dbType)){
+            this.dbType=JdbcUtils.ORACLE;
+        }
         if (!mergeSql) {
             return sql;
         }
@@ -158,6 +171,10 @@ public class StatFilter extends FilterEventAdapter implements StatFilterMBean {
         try {
             if (this.dbType == null || this.dbType.trim().length() == 0) {
                 this.dbType = dataSource.getDbType();
+                /**新增内容*/
+                if(JdbcUtils.DM.equals(this.dbType)){
+                    this.dbType=JdbcUtils.ORACLE;
+                }
             }
 
             configFromProperties(dataSource.getConnectProperties());

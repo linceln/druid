@@ -251,6 +251,10 @@ public class SQLUtils {
 
     public static String format(String sql, String dbType, List<Object> parameters, FormatOption option) {
         try {
+            /**新增内容*/
+            if(JdbcUtils.DM.equals(dbType)){
+                dbType=JdbcUtils.ORACLE;
+            }
             SQLStatementParser parser = SQLParserUtils.createSQLStatementParser(sql, dbType, FORMAT_DEFAULT_FEATURES);
             List<SQLStatement> statementList = parser.parseStatementList();
             return toSQLString(statementList, dbType, parameters, option);

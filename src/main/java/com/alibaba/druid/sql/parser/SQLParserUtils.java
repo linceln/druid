@@ -73,8 +73,9 @@ public class SQLParserUtils {
             return new OracleStatementParser(sql);
         }
 
+        /**新增内容*/
         if (JdbcUtils.DM.equals(dbType)) {
-            return new MySqlStatementParser(sql, features);
+            return new OracleStatementParser(sql);
         }
 
         if (JdbcUtils.MYSQL.equals(dbType) || JdbcUtils.ALIYUN_DRDS.equals(dbType)) {
@@ -126,6 +127,11 @@ public class SQLParserUtils {
             return new OracleExprParser(sql);
         }
 
+        /**新增内容*/
+        if(JdbcUtils.DM.equals(dbType)){
+            return new OracleExprParser(sql);
+        }
+
         if (JdbcUtils.MYSQL.equals(dbType) || //
             JdbcUtils.MARIADB.equals(dbType) || //
             JdbcUtils.H2.equals(dbType)) {
@@ -158,6 +164,11 @@ public class SQLParserUtils {
 
     public static Lexer createLexer(String sql, String dbType) {
         if (JdbcUtils.ORACLE.equals(dbType) || JdbcUtils.ALI_ORACLE.equals(dbType)) {
+            return new OracleLexer(sql);
+        }
+
+        /**新增内容*/
+        if(JdbcUtils.DM.equals(dbType)){
             return new OracleLexer(sql);
         }
 
@@ -197,6 +208,11 @@ public class SQLParserUtils {
         }
 
         if (JdbcConstants.ORACLE.equals(dbType)) {
+            return new OracleSelectQueryBlock();
+        }
+
+        /**新增内容*/
+        if(JdbcConstants.DM.equals(dbType)){
             return new OracleSelectQueryBlock();
         }
 
